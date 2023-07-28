@@ -31,4 +31,3 @@ size_t print_list(const list_t *h)
 	/* printed in the remaining part of the list. */
 	return (1 + print_list(h->next));
 }
-
