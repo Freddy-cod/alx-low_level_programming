@@ -3,6 +3,21 @@
 #include <string.h>
 
 /**
+ * _strlen - Calculates the length of a string.
+ * @str: Input string.
+ *
+ * Return: Length of the string.
+ */
+size_t _strlen(const char *str)
+{
+	size_t len = 0;
+
+	while (str[len])
+		len++;
+	return (len);
+}
+
+/**
  * add_node_end - Appends a new node at the end of a linked list.
  *
  * @head: Pointer to the list_t list.
@@ -12,13 +27,9 @@
  */
 list_t *add_node_end(list_t **head, const char *str)
 {
-	list_t *new;           /* Pointer to the new node */
-	list_t *temp = *head;  /* Temporary pointer to traverse the list */
-	unsigned int len = 0; /* Length of the input string */
-
-	/* Calculate the length of the input string */
-	while (str[len])
-		len++;
+	list_t *new; /* Pointer to the new node */
+	list_t *temp = *head; /* Temporary pointer to traverse the list */
+	unsigned int len = _strlen(str); /* Length of the input string */
 
 	/* Allocate memory for the new node */
 	new = malloc(sizeof(list_t));
