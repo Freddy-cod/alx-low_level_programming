@@ -1,52 +1,57 @@
+#include "lists.h"
 #include <stdlib.h>
 #include <string.h>
-#include "lists.h"
 
 /**
- * add_node_end - Adds a new node at the end of a linked list.
+ * add_node_end - Appends a new node at the end of a linked list.
  *
- * @list_head: Pointer to the list_t list.
- * @new_string: String to store in the node.
+ * @head: Pointer to the list_t list.
+ * @str: String to store in the node.
  *
- * Returns: Pointer to the newly added node, or NULL if it failed.
+ * Return: Pointer to the newly added node, or NULL if it failed.
  */
-list_t *add_node_end(list_t **list_head, const char *new_string)
+list_t *add_node_end(list_t **head, const char *str)
 {
-	size_t string_length;
-	list_t *new_node;
-	list_t *temp;
+	list_t *new;           /* Pointer to the new node */
+	list_t *temp = *head;  /* Temporary pointer to traverse the list */
+	unsigned int len = 0; /* Length of the input string */
 
-	/* Calculate the length of the string. */
-	string_length = strlen(new_string);
+	/* Calculate the length of the input string */
+	while (str[len])
+		len++;
 
-	/* Allocate memory for the new node. */
-	new_node = malloc(sizeof(list_t) + string_length + 1);
+	/* Allocate memory for the new node */
+	new = malloc(sizeof(list_t));
 
-	if (new_node == NULL)
+	if (!new)
 		return (NULL);
 
-	/* Initialize the new node. */
-	new_node->str = (char *)new_node + sizeof(list_t);
-	memcpy(new_node->str, new_string, string_length + 1);
-	new_node->len = string_length;
-	new_node->next = NULL;
+	/* Duplicate the input string using strdup */
+	new->str = strdup(str);
 
-	/* If the list is empty, the new node is the head. */
-	if (*list_head == NULL)
+	if (!new->str)
 	{
-		*list_head = new_node;
-		return (new_node);
+		free(new);
+		return (NULL);
 	}
 
-	/* Otherwise, iterate through the list to find the end. */
-	temp = *list_head;
+	/* Initialize the new node */
+	new->len = len;
+	new->next = NULL;
 
-	while (temp->next != NULL)
+	/* If the list is empty, the new node is the head */
+	if (*head == NULL)
+	{
+		*head = new;
+		return (new);
+	}
+
+	/* Otherwise, traverse the list to find the end */
+	while (temp->next)
 		temp = temp->next;
 
-	/* The new node is now the last node in the list. */
-	temp->next = new_node;
+	/* The new node becomes the last node in the list */
+	temp->next = new;
 
-	return (new_node);
+	return (new);
 }
-
