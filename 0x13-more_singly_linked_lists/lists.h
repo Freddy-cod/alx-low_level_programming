@@ -10,14 +10,12 @@
  * @next: points to the next node
  *
  * Description: singly linked list node structure
- * 
  */
 typedef struct listint_s
 {
-    int n;                       /* Data of the node */
-    struct listint_s *next;      /* Points to the next node */
+	int n;                       /* Data of the node */
+	struct listint_s *next;      /* Points to the next node */
 } listint_t;
-
 
 listint_t *reverse_listint(listint_t **head);
 size_t print_listint_safe(const listint_t *head);
@@ -33,6 +31,8 @@ void free_listint(listint_t *head);
 void free_listint2(listint_t **head);
 size_t print_listint(const listint_t *h);
 size_t listint_len(const listint_t *h);
+
 listint_t *add_nodeint(listint_t **head, const int n);
 
 #endif
+
