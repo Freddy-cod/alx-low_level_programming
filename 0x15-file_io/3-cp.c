@@ -1,19 +1,14 @@
-i#include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "main.h"
 
 /**
- * main - Copy the contents of one file to another.
- * @argc: The number of arguments supplied to the program.
- * @argv: An array of pointers to the arguments.
- *
- * Return: 0 on success.
- *
- * Description: Exit with code 97 if the argument count is incorrect.
- * Exit with code 98 if file_from does not exist or cannot be read.
- * Exit with code 99 if file_to cannot be created or written to.
- * Exit with code 100 if file_to or file_from cannot be closed.
- */
+* main - copies the content of a file to another file
+* @argc: number of  arguments
+* @argv: string argument
+* Return: 0
+*/
+
 int main(int argc, char *argv[])
 {
 int file_from, file_to;
@@ -56,3 +51,4 @@ if (close(file_to) == -1)
 
 return (0);
 }
+
